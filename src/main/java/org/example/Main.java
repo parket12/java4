@@ -1,13 +1,16 @@
 package org.example;
+
 import java.util.ArrayList;
 import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         String[] firms = {"Гучи", "Диор", "ДиорГучи"};
-        String[][] Brands = {{"Гучи гучвотч", "Зара"}, {"Диор диорвотч", "ВкусноИТочка"}, {"ДиорГучи ДиорГучиВотч", "германия"}};
-        ArrayList<String[]> customers = new ArrayList<>();
+        Object[][] Brands = {{"Гучи гучвотч", "Зара"}, {"Диор диорвотч", "ВкусноИТочка"}, {"ДиорГучи ДиорГучиВотч", "германия"}};
+        ArrayList<Object[]> customers = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
-        for (int i = 0; i < 3; i++) {
+        int i = 0;
+        while (i < 3) {
             System.out.println("Введите имя покупателя:");
             String fullName = scanner.nextLine();
             System.out.println("Введите почту:");
@@ -15,16 +18,19 @@ public class Main {
             System.out.println("Введите номер телефона:");
             String phone = scanner.nextLine();
             System.out.println("Ввыберите из списка");
-            for (int j = 0; j < firms.length; j++) {
+            int j = 0;
+            while (j < firms.length) {
                 System.out.println((j + 1) + ". " + Brands[j][0] + " - " + Brands[j][1]);
+                j++;
             }
             System.out.println("Введите подходящую позицию:");
             int position = Integer.parseInt(scanner.nextLine()) - 1;
             System.out.println("Введите какое кол-во вы хотите:");
             int quantity = Integer.parseInt(scanner.nextLine());
-            customers.add(new String[]{fullName, email, phone, firms[position], Brands[position][1], String.valueOf(quantity)});
+            customers.add(new Object[]{fullName, email, phone, firms[position], Brands[position][1], quantity});
+            i++;
         }
-        for (String[] customer : customers) {
+        for (Object[] customer : customers) {
             System.out.println("Покупатель: " + customer[0]);
             System.out.println("Почта: " + customer[1]);
             System.out.println("Номер: " + customer[2]);
